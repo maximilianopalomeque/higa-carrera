@@ -68,13 +68,13 @@ const Podiums = () => {
   const getMedalColor = (position) => {
     switch (position) {
       case 1:
-        return 'text-yellow-500';
+        return 'text-yellow-300';
       case 2:
-        return 'text-gray-400';
+        return 'text-white';
       case 3:
-        return 'text-orange-600';
+        return 'text-yellow-200';
       default:
-        return 'text-gray-300';
+        return 'text-gray-200';
     }
   };
 
@@ -82,18 +82,22 @@ const Podiums = () => {
   const getPositionBg = (position) => {
     switch (position) {
       case 1:
-        return 'bg-gradient-to-r from-yellow-400 to-yellow-500';
+        return 'bg-gradient-to-r from-pink-500 to-pink-600';
       case 2:
-        return 'bg-gradient-to-r from-gray-300 to-gray-400';
+        return 'bg-gradient-to-r from-cyan-400 to-cyan-500';
       case 3:
-        return 'bg-gradient-to-r from-orange-500 to-orange-600';
+        return 'bg-gradient-to-r from-blue-700 to-blue-800';
+      case 4:
+        return 'bg-gradient-to-r from-purple-500 to-purple-600';
+      case 5:
+        return 'bg-gradient-to-r from-indigo-500 to-indigo-600';
       default:
-        return 'bg-gradient-to-r from-blue-400 to-blue-500';
+        return 'bg-gradient-to-r from-gray-400 to-gray-500';
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-3 md:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 to-blue-900 p-3 md:p-6">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-xl shadow-2xl p-4 md:p-8">
           {/* Header */}
@@ -107,7 +111,7 @@ const Podiums = () => {
             </button>
             <div>
               <h1 className="text-2xl md:text-3xl font-bold text-gray-800 flex items-center gap-2">
-                <Trophy className="h-8 w-8 text-yellow-500" />
+                <Trophy className="h-8 w-8 text-pink-600" />
                 Podios por Categoría
               </h1>
               <p className="text-gray-600 text-sm mt-1">

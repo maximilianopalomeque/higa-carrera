@@ -51,7 +51,7 @@ const CompleteResults = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-3 md:p-6">
+    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 to-blue-900 p-3 md:p-6">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-xl shadow-2xl p-4 md:p-8">
           {/* Header */}

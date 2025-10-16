@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 
-const RunnerSearch = ({ runners, onSelect }) => {
+const RunnerSearch = ({ runners, onSelect, lightStyle = false }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -49,9 +49,15 @@ const RunnerSearch = ({ runners, onSelect }) => {
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => searchTerm && suggestions.length > 0 && setShowSuggestions(true)}
           placeholder="Buscar corredor por nombre..."
-          className="w-full px-6 py-3 md:py-4 text-base md:text-lg border-2 border-gray-300 rounded-xl focus:outline-none focus:border-blue-500 shadow-lg"
+          className={`w-full px-6 py-3 md:py-4 text-base md:text-lg border-2 rounded-xl focus:outline-none shadow-lg ${
+            lightStyle
+              ? 'border-white text-white placeholder-white/70 bg-transparent focus:border-cyan-300'
+              : 'border-gray-300 text-gray-900 bg-white focus:border-blue-500'
+          }`}
         />
-        <div className="absolute right-3 md:right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+        <div className={`absolute right-3 md:right-4 top-1/2 -translate-y-1/2 pointer-events-none ${
+          lightStyle ? 'text-white' : 'text-gray-400'
+        }`}>
           <Search className="h-5 w-5 md:h-6 md:w-6" />
         </div>
       </div>
