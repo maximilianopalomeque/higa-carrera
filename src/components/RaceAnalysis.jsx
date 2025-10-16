@@ -6,6 +6,9 @@ import RunnerSearch from './RunnerSearch';
 const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
   const colors = ['#ef4444', '#f97316', '#f59e0b', '#eab308', '#84cc16', '#22c55e', '#10b981', '#14b8a6'];
 
+  // Normalize category helper
+  const normalizeCategory = (cat) => cat.trim().replace(' A ', ' a ');
+
   // Calculate runner stats
   const stats = useMemo(() => {
     if (!runner) return null;
@@ -28,7 +31,7 @@ const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
     const speed = (10 / (runnerTimeInSeconds / 3600)).toFixed(1);
 
     // Get runners in same category and gender
-    const sameCategory = allRunners.filter(r => r.categoria === runner.categoria && r.sexo === runner.sexo);
+    const sameCategory = allRunners.filter(r => normalizeCategory(r.categoria) === normalizeCategory(runner.categoria) && r.sexo === runner.sexo);
     const categoryTotal = sameCategory.length;
 
     // Get runners ahead (better position) - same category and gender only, max 10
@@ -101,7 +104,7 @@ const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
       categoryPercentile,
       motivationalPhrase: getMotivationalPhrase()
     };
-  }, [runner, allRunners]);
+  }, [runner, allRunners, normalizeCategory]);
 
   if (!runner || !stats) {
     return (
@@ -135,7 +138,7 @@ const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
           <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
             <button
               onClick={onBack}
-              className="flex-shrink-0 mt-2 p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+              className="flex-shrink-0 mt-2 p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
               title="Volver al inicio"
             >
               <Home className="h-5 w-5 md:h-6 md:w-6" />
@@ -153,7 +156,7 @@ const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
               {runner.nombre}
             </h2>
             <p className="text-sm md:text-base text-gray-600">
-              Categoría {runner.categoria} • {runner.sexo}
+              Categoría {normalizeCategory(runner.categoria)} • {runner.sexo}
             </p>
           </div>
 
@@ -166,7 +169,7 @@ const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
 
             <div className="col-span-3 md:col-span-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-lg shadow-lg text-center">
               <div className="text-4xl font-bold mb-2">{runner.posicionCategoria}°</div>
-              <div className="text-sm uppercase tracking-wide">Categoría {runner.categoria}</div>
+              <div className="text-sm uppercase tracking-wide">Categoría {normalizeCategory(runner.categoria)}</div>
               <div className="text-xs mt-1 opacity-90">de {stats.categoryTotal} competidores</div>
             </div>
 
@@ -220,7 +223,11 @@ const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
             </h4>
             <ul className="space-y-2 text-gray-700">
               {stats.runnersAhead.length > 0 && (
-                <li>• Estuviste a <strong className="text-blue-600">{stats.runnersAhead[0].diferencia} segundos</strong> de alcanzar la posición {stats.runnersAhead[0].posicion} en tu categoría</li>
+                <li>• Estuviste a <strong className="text-blue-600">
+                  {stats.runnersAhead[0].diferencia >= 60
+                    ? `${stats.runnersAhead[0].minutos} minutos`
+                    : `${stats.runnersAhead[0].diferencia} segundos`}
+                </strong> de alcanzar la posición {stats.runnersAhead[0].posicion} en tu categoría</li>
               )}
               <li>• Ritmo promedio: <strong className="text-blue-600">{stats.pace} min/km</strong> - Velocidad: <strong className="text-blue-600">{stats.speed} km/h</strong></li>
               <li>• El ganador de tu categoría corrió a <strong className="text-blue-600">{stats.winnerPace} min/km</strong> ({stats.winnerSpeed} km/h)</li>
