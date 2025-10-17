@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { Home, Lightbulb, Trophy } from "lucide-react";
 import RunnerSearch from "./RunnerSearch";
+import Footer from "./Footer";
 
 const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
   const colors = [
@@ -168,8 +169,9 @@ const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-pink-500 via-purple-600 to-blue-900 p-3 md:p-6 min-h-screen">
-      <div className="max-w-6xl mx-auto">
+    <div className="bg-gradient-to-br from-pink-500 via-purple-600 to-blue-900 min-h-screen flex flex-col">
+      <div className="flex-1 p-3 md:p-6">
+        <div className="max-w-6xl mx-auto">
         <div className="bg-white rounded-xl shadow-2xl p-4 md:p-8">
           <div className="flex items-start gap-3 md:gap-4 mb-4 md:mb-6">
             <button
@@ -333,6 +335,8 @@ const RaceAnalysis = ({ runner, allRunners, onBack, onSelectRunner }) => {
           </div>
         </div>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 };

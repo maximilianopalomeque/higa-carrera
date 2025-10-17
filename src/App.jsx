@@ -5,6 +5,7 @@ import RunnerSearch from './components/RunnerSearch';
 import RaceAnalysis from './components/RaceAnalysis';
 import CompleteResults from './components/CompleteResults';
 import Podiums from './components/Podiums';
+import Footer from './components/Footer';
 import resultsData from './results.json';
 
 function HomePage() {
@@ -27,22 +28,23 @@ function HomePage() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-pink-500 via-purple-600 to-blue-900 min-h-screen flex flex-col items-center justify-center p-6">
-      <div className="max-w-4xl w-full">
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <User className="h-10 w-10 md:h-12 md:w-12 text-white" strokeWidth={2.5} />
-            <h1 className="text-4xl md:text-5xl font-bold text-white">
-              10K San Martín
-            </h1>
+    <div className="bg-gradient-to-br from-pink-500 via-purple-600 to-blue-900 min-h-screen flex flex-col">
+      <div className="flex-1 flex flex-col items-center justify-center p-6">
+        <div className="max-w-4xl w-full">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <User className="h-10 w-10 md:h-12 md:w-12 text-white" strokeWidth={2.5} />
+              <h1 className="text-4xl md:text-5xl font-bold text-white">
+                10K San Martín
+              </h1>
+            </div>
+            <h2 className="text-xl md:text-2xl text-cyan-300 mb-2 font-bold">
+              La Salud es la Meta
+            </h2>
+            <p className="text-white">
+              Busca tu nombre para ver tu análisis personalizado
+            </p>
           </div>
-          <h2 className="text-xl md:text-2xl text-cyan-300 mb-2 font-bold">
-            La Salud es la Meta
-          </h2>
-          <p className="text-white">
-            Busca tu nombre para ver tu análisis personalizado
-          </p>
-        </div>
 
         <div className="mb-8">
           <RunnerSearch
@@ -108,9 +110,11 @@ function HomePage() {
               <Trophy className="h-5 w-5" />
               Ver Podios
             </button>
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

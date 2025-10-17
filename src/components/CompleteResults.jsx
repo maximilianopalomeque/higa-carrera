@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Home, Search } from 'lucide-react';
+import Footer from './Footer';
 import resultsData from '../results.json';
 
 const CompleteResults = () => {
@@ -51,8 +52,9 @@ const CompleteResults = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 to-blue-900 p-3 md:p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-pink-500 via-purple-600 to-blue-900 flex flex-col">
+      <div className="flex-1 p-3 md:p-6">
+        <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-xl shadow-2xl p-4 md:p-8">
           {/* Header */}
           <div className="flex items-center gap-4 mb-6">
@@ -188,6 +190,8 @@ const CompleteResults = () => {
           )}
         </div>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 };
